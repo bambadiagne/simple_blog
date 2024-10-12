@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: blog_database
+    image: postgres
+    ports:
+      - 5432:5432
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./data:/var/lib/postgresql/data
