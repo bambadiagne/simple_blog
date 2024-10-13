@@ -17,7 +17,10 @@ export class AuthService {
       delete user.password;
       return user;
     }
-    throw new UnauthorizedException('Combinaison email/mot de passe invalide');
+    throw new UnauthorizedException({
+      message: 'Combinaison email/mot de passe invalide',
+      status: false,
+    });
   }
   async signToken(user: any) {
     const payload = { email: user.email, id: user.id };
