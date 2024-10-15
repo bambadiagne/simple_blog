@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+
+/* Base styles */
+body {
+  font-family: 'Merriweather', serif;
+  color: #000; /* Black text */
+  background-color: #fff; /* White background */
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: #000; /* Black text */
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 1em;
+}
+
+/* Links */
+a {
+  color: #007bff; /* Blue links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Navigation */
+nav {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f8f9fa; /* Light grey background */
+  padding: 1em;
+}
+
+nav a {
+  color: #000; /* Black text */
+  margin-right: 1em;
+}
