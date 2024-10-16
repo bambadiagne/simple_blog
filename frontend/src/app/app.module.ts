@@ -6,10 +6,10 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { PrimeNgModule } from './primeng.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthModule } from './auth/auth.module';
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, LayoutModule, PrimeNgModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, LayoutModule, AuthModule, BrowserAnimationsModule],
   exports: [PrimeNgModule],
   providers: [],
   bootstrap: [AppComponent]

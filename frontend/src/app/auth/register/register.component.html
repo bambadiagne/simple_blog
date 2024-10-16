@@ -1,0 +1,22 @@
+<div class="flex justify-content-center mt-7">
+    <div id="forml" class="border-round-lg bg-black-alpha-90 shadow-8">
+        <h1 class="text-white text-center text-2xl md:text-4xl lg:text-5xl">Create an account</h1> 
+    
+        <div class="flex justify-content-center align-items-center">
+            <form class="flex flex-column p-4  border-round">
+              <div class="mb-3">
+                <app-input-text [form]="this.createUserForm.usernameFormControl" icon="pi pi-user" idInput="username" label="Username" [listeAttributs]="{ type: 'text', autocomplete: 'new-password' }"></app-input-text>
+              </div>
+              <div class="mb-3">
+                <app-input-text [form]="this.createUserForm.emailFormControl" icon="pi pi-at" idInput="email" label="Email" [listeAttributs]="{ type: 'email' }"></app-input-text>
+              </div>
+              <div class="mb-3">
+                <app-input-text [form]="this.createUserForm.passwordFormControl" icon="pi pi-asterisk" idInput="password" label="Password" [listeAttributs]="{ type: 'password' }"></app-input-text>
+              </div>
+              <div class="text-center">
+                <p-button label="Send" severity="contrast" icon="pi pi-send" iconPos="right" (onClick)="submitForm()"></p-button>
+              </div>
+            </form>
+          </div>
+    </div>
+</div>

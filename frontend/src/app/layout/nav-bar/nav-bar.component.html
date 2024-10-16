@@ -1,10 +1,10 @@
 <p-menubar [model]="items">
     <ng-template pTemplate="start">
+        <h3>WaxSaXalaat</h3>
     </ng-template>
     <ng-template pTemplate="item" let-item let-root="root">
         <a pRipple class="flex align-items-center p-menuitem-link">
             <h4 class="ml-2">{{ item.label }}</h4>
-            <p-badge *ngIf="item.badge" [ngClass]="{ 'ml-auto': !root, 'ml-2': root }" [value]="item.badge" />
             <span *ngIf="item.shortcut" class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1">{{ item.shortcut }}</span>
             <i *ngIf="item.items" [ngClass]="['pi', root ? 'pi-angle-down ml-2' : 'pi-angle-right ml-auto']"></i>
         </a>
@@ -12,10 +12,10 @@
     <ng-template pTemplate="end" class="flex " let-item  >
         <div class="flex align-items-center gap-2">
            <div>
-            <p-button label="Login" [text]="true" />
+            <p-button label="Login"  severity="contrast" [text]="true" />
            </div>
            <div>
-            <p-button label="Register" icon="pi pi-power-off" ></p-button>
+            <p-button label="Register" severity="contrast" icon="pi pi-power-off" ></p-button>
        </div>
         <div class="" *ngIf="false" >
             <p-menu #menu [model]="profileItem" [popup]="true" />
