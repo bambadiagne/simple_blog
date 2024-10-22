@@ -1,4 +1,5 @@
 export enum MessageType {
+  success = 'success',
   error = 'error',
   warning = 'warning',
   information = 'information'
@@ -23,6 +24,9 @@ export class ListeFunctionalMessage {
     messages.forEach((message) => {
       this.addMessage(message);
     });
+  }
+  public clear(): void {
+    this.listeFunctionalMessage = [];
   }
 
   public get length(): number {

@@ -7,3 +7,6 @@ export interface User {
   role: UserRole;
   is_verified: boolean;
 }
+export type UserCreationPayload = Omit<User, 'is_verified'>;
+
+export type UserResponse = Omit<User, 'password'>;

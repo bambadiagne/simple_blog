@@ -4,10 +4,12 @@ import { InputTextComponent } from './forms/input-text/input-text.component';
 import { FunctionalMessagePipe } from './pipes/message.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNgModule } from '../primeng.module';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { MessageComponent } from './components/message/message.component';
 
 @NgModule({
-  declarations: [InputTextComponent, FunctionalMessagePipe],
+  declarations: [InputTextComponent, SpinnerComponent, MessageComponent, FunctionalMessagePipe],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, PrimeNgModule],
-  exports: [InputTextComponent, FunctionalMessagePipe, PrimeNgModule]
+  exports: [InputTextComponent, SpinnerComponent, MessageComponent, FunctionalMessagePipe, PrimeNgModule]
 })
 export class SharedModule {}

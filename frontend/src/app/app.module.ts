@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,11 +7,15 @@ import { LayoutModule } from './layout/layout.module';
 import { PrimeNgModule } from './primeng.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { GlobalErrorHandler } from './shared/utils/global-handler.error';
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, LayoutModule, AuthModule, BrowserAnimationsModule],
+  imports: [BrowserModule, AppRoutingModule, LayoutModule, AuthModule, BrowserAnimationsModule, HttpClientModule],
   exports: [PrimeNgModule],
-  providers: [],
+  providers: [
+    //{ provide: ErrorHandler, useClass: GlobalErrorHandler },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
