@@ -1,0 +1,8 @@
+.p-inputgroup {
+    width: 100%;
+  }
+  
+  .p-error {
+    color: red;
+    font-size: 0.875em;
+  }

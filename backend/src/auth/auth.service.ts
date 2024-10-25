@@ -18,14 +18,14 @@ export class AuthService {
       return user;
     }
     throw new UnauthorizedException({
-      message: 'Combinaison email/mot de passe invalide',
+      message: ['Combinaison email/mot de passe invalide'],
       status: false,
     });
   }
   async signToken(user: any) {
     const payload = { email: user.email, id: user.id };
     return {
-      access_token: this.jwtService.sign(payload, { expiresIn: '5m' }),
+      access_token: this.jwtService.sign(payload, { expiresIn: '3m' }),
       refresh_token: this.jwtService.sign(payload, {
         expiresIn: '7d',
         secret: this.configService.get<string>('JWT_REFRESH_SECRET'),

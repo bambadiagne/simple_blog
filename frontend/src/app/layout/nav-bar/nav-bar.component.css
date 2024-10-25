@@ -1,0 +1,9 @@
+.p-avatar {
+    cursor: pointer;
+  }
+  
+  .p-menu {
+    position: absolute;
+    top: 50px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+  }
