@@ -3,7 +3,7 @@ import { CreateUserForm } from '../models/user.form';
 import { UsersService } from 'src/app/users/service/users.service';
 import { UserRole } from '../models/user.role';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { ListeFunctionalMessage, MessageType } from 'src/app/shared/models/message-fonctionnel';
 
 @Component({
@@ -14,7 +14,7 @@ import { ListeFunctionalMessage, MessageType } from 'src/app/shared/models/messa
 export class RegisterComponent implements OnDestroy {
   loading = false;
   createUserForm: CreateUserForm;
-  subscription: Subscription[] = [];
+  private _destroy$ = new Subject<void>();
   messages: ListeFunctionalMessage = new ListeFunctionalMessage();
   constructor(
     private usersService: UsersService,
@@ -23,15 +23,11 @@ export class RegisterComponent implements OnDestroy {
     this.createUserForm = new CreateUserForm();
   }
   ngOnDestroy(): void {
-    this.subscription.forEach((sub) => {
-      sub.unsubscribe();
-    });
   }
   submitForm() {
     if (this.createUserForm.valider()) {
       this.loading = true;
-      this.subscription.push(
-        this.usersService.createUser(this.getUserPayload()).subscribe({
+        this.usersService.createUser(this.getUserPayload()).pipe(takeUntil(this._destroy$)).subscribe({
           next: () => {
             this.loading = false;
             this.messages.addMessage({ type: MessageType.success, message: 'User created', fieldId: '' });
@@ -42,7 +38,6 @@ export class RegisterComponent implements OnDestroy {
             this.loading = false;
           }
         })
-      );
     }
     this.messages.clear();
   }

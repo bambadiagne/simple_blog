@@ -11,17 +11,22 @@
     </ng-template>
     <ng-template pTemplate="end" class="flex " let-item  >
         <div class="flex align-items-center gap-2">
-           <div>
-            <p-button label="Login"  severity="contrast" [text]="true" />
-           </div>
-           <div>
-            <p-button label="Register" severity="contrast" icon="pi pi-power-off" ></p-button>
-       </div>
-        <div class="" *ngIf="false" >
-            <p-menu #menu [model]="profileItem" [popup]="true" />
-            <p-avatar label="P" shape="circle" styleClass="mr-2" (click)="menu.toggle($event)"></p-avatar>
-     
-        </div>
+            @if(user===null){
+                <div class="">
+                    <p-button label="Login" routerLink="/login"  severity="contrast" [text]="true" />
+                   </div>
+                   <div>
+                    <p-button label="Register" routerLink="/register" severity="contrast" ></p-button>
+               </div>
+        
+            } @else {
+                <div>
+                    <p-menu #menu [model]="profileItem" [popup]="true" />
+                    <p-avatar [label]="user.username" shape="circle" styleClass="mr-2" (click)="menu.toggle($event)"></p-avatar>
+             
+                </div>
+            } 
+           
        </div>
           </ng-template>
 </p-menubar>
