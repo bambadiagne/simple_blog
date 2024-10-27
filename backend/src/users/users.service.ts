@@ -18,7 +18,9 @@ export class UsersService {
       },
     });
     if (isExist) {
-      throw new BadRequestException(["Nom d'utilisateur ou email déjà utilisé"]);
+      throw new BadRequestException([
+        "Nom d'utilisateur ou email déjà utilisé",
+      ]);
     }
     return await this._db.user.create({
       data: {
