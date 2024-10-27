@@ -19,4 +19,17 @@ model User{
   password String
   role String
   is_verified Boolean
+  posts Post[]
 }
+
+model Post{
+  id Int @id @default(autoincrement())
+  title String
+  content String
+  user_id Int
+  image String
+  user User @relation(fields: [user_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
