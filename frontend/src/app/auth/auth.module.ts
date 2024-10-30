@@ -6,7 +6,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [RegisterComponent,LoginComponent],
+  declarations: [RegisterComponent, LoginComponent],
   imports: [CommonModule, SharedModule, AuthRoutingModule],
   exports: []
 })

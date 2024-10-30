@@ -2,16 +2,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
-import { User, UserResponse } from 'src/app/auth/models/user';
+import { UserResponse } from 'src/app/auth/models/user';
 import { UsersService } from 'src/app/users/service/users.service';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
-export class NavBarComponent implements OnInit,OnDestroy {
+export class NavBarComponent implements OnInit, OnDestroy {
   items: MenuItem[] | undefined;
-  user:any = null;
+  user: any = null;
   private _destroy$ = new Subject<void>();
   profileItem = [
     {
@@ -42,7 +42,10 @@ export class NavBarComponent implements OnInit,OnDestroy {
       ]
     }
   ];
-  constructor(private usersService:UsersService,private router:Router) {
+  constructor(
+    private usersService: UsersService,
+    private router: Router
+  ) {
     this.usersService.getCurrentUser().pipe(takeUntil(this._destroy$)).subscribe();
   }
   ngOnDestroy(): void {
@@ -62,8 +65,8 @@ export class NavBarComponent implements OnInit,OnDestroy {
         label: 'Contact'
       }
     ];
-    this.usersService.$currentUser.subscribe((user:UserResponse) => {
+    this.usersService.$currentUser.subscribe((user: UserResponse) => {
       this.user = user;
-    })
+    });
   }
 }
