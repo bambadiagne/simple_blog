@@ -25,7 +25,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
           label: 'My posts',
           icon: 'pi pi-server',
           command: () => {
-            this.router.navigate(['/my-posts']);
+            this.router.navigate(['/posts/new']);
           }
         },
         {
@@ -55,10 +55,16 @@ export class NavBarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.items = [
       {
-        label: 'Home'
+        label: 'Home',
+        command: () => {
+          this.router.navigate(['/']);
+        }
       },
       {
-        label: 'Posts'
+        label: 'Posts',
+        command: () => {
+          this.router.navigate(['/posts']);
+        }
       },
 
       {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBaseComponent } from '../formulaire-base';
 
 @Component({
@@ -8,6 +8,7 @@ import { FormBaseComponent } from '../formulaire-base';
 })
 export class InputTextComponent extends FormBaseComponent {
   @Input() icon = '';
+  @Output() textChange = new EventEmitter<string>();
   constructor() {
     super();
   }
@@ -17,5 +18,9 @@ export class InputTextComponent extends FormBaseComponent {
 
   public descAttr() {
     return this.prependText || this.innerHtml ? `basic-addon1 ${this.idInput}-validity` : `${this.idInput}-validity`;
+  }
+  handleTextChange(event) {
+    this.textChange.emit(event.target.value);
+    console.log('Text changed', event);
   }
 }

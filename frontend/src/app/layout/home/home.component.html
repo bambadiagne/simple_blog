@@ -1,32 +1,51 @@
-<div class="">
-<div class="w-full gradient-background pb-6">
+<app-spinner [show]="loading"></app-spinner>
+
+<div class="" *ngIf="!loading">
+
+    <div class="w-full gradient-background pb-6">
     
     <div class="typewriter flex justify-content-center  pt-8">
         <h2 class="typing-erase">{{currentText}}</h2>
     </div>
     <div class="flex justify-content-center pt-8">
-        <p-button severity="primary" label="Write a post"></p-button>
+        <p-button severity="primary" routerLink="/posts/new" label="Write a post"></p-button>
     </div>  
 </div>
 <div class="flex flex-column lg:flex-row justify-content-around mt-7">
-    <div class="home-card border-round-2xl bg-black-alpha-90 mx-2 pt-2 mb-2">
+    <div class="home-card border-round-2xl  mx-2 mb-2 pt-2 px-2 ">
         <div class="flex flex-column align-items-center mb-2">
             <span class="text-center"><i class="text-white pi pi-comments" style="font-size: 3rem"></i></span>
             <p class="text-white">Share your thoughts and experiences with the world.<br> Your voice matters, and we want to hear it.<br> Connect with like-minded individuals and make your mark.</p>
         </div>
     </div>
-    <div class="home-card border-round-2xl bg-black-alpha-90 mx-2 pt-2 mb-2">
+    <div class="home-card border-round-2xl  mx-2 mb-2 pt-2 px-2">
         <div class="flex flex-column align-items-center">
             <span class="text-center"><i class="text-white pi pi-users" style="font-size: 3rem"></i></span>
             <p class="text-white">Join our community and start blogging today.<br> Meet new people, share your passions, and grow your audience.<br> Be part of something bigger.</p>
         </div>
     </div>
-    <div class="home-card border-round-2xl bg-black-alpha-90 mx-2 pt-2 mb-2">
+    <div class="home-card border-round-2xl  mx-2 mb-2 pt-2 px-2">
         <div class="flex flex-column align-items-center">
             <span class="text-center"><i class="text-white pi pi-pencil" style="font-size: 3rem"></i></span>
             <p class="text-white">Express your creativity and share your stories.<br> Whether it's through writing, photography, or art,<br> let your imagination run wild and inspire others.</p>
         </div>
     </div>
 </div>
+<div>
+    <h1 class="text-black text-center">Recent Posts</h1>
+<div *ngIf="this.posts" class="flex flex-column lg:flex-row  justify-content-around md:justify-content-center mt-4">
+    @for (post of posts; track $index) {
+        <app-post-card [post]="post"></app-post-card>
+    }
+</div>
+</div>
+<div class="flex flex-column md:flex-row justify-content-center mt-5">
+    <div class="mx-4">
+        <h1 class="text-black text-center">Start sharing your stories today</h1>
+    </div>
+    <div class="mx-auto lg:mx-0">
+        <p-image src="/assets/images/write.svg" width="250px"> </p-image>
+    </div>
 </div>
 
+</div>

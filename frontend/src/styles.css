@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
-
+@import "../node_modules/quill/dist/quill.core.css";
+@import "../node_modules/quill/dist/quill.snow.css";
 /* Base styles */
 body {
   font-family: 'Merriweather', serif;
@@ -22,6 +23,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Paragraphs */
 p {
   margin-bottom: 1em;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* Links */

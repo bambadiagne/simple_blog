@@ -12,6 +12,7 @@ import {
   Req,
   ParseIntPipe,
   BadRequestException,
+  Query,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -19,6 +20,7 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { JwtGuard } from 'src/auth/guards/jwt.guard';
 import { CustomFileInterceptor } from 'src/common/interceptors/file.interceptor';
 import { S3Service } from 'src/common/services/s3.service';
+import { QueryPaginationDTO } from 'src/common/dto/query-pagination';
 
 @Controller('posts')
 export class PostsController {
@@ -51,10 +53,9 @@ export class PostsController {
   }
 
   @Get()
-  findAll() {
-    return this.postsService.findAll();
+  findAll(@Query() query: QueryPaginationDTO) {
+    return this.postsService.findAll(query);
   }
-
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.postsService.findOne(id);

@@ -64,4 +64,14 @@ export class UsersService {
         })
       );
   }
+  isAuthenticated(): boolean {
+    if (!localStorage.getItem('token')) {
+      return false;
+    }
+    const token = localStorage.getItem('token').split('.')[1];
+    const payload = JSON.parse(atob(token));
+    const exp = payload.exp;
+
+    return exp > new Date().getTime() / 1000;
+  }
 }

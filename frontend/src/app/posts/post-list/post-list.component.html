@@ -1,0 +1,12 @@
+<app-spinner [show]="loading"></app-spinner>
+<div class="flex justify-content-center mt-7">
+        <div>
+            <app-input-text (textChange)="filter($event)"  icon="pi pi-search" [form]="searchForm.searchTermFormControl" label="Search" [listeAttributs]="{type:'text'}" ></app-input-text>
+        </div>
+</div>
+<div *ngIf="this.posts" class="flex flex-column sm:flex-row  justify-content-around md:justify-content-center mt-4">
+    @for (post of posts; track $index) {
+        <app-post-card [post]="post"></app-post-card>
+    }
+</div>
+

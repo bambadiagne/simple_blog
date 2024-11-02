@@ -1,0 +1,24 @@
+<div class="post-card card flex justify-content-center px-2 py-2 mx-auto" style="width: 300px;">
+    <p-card header="{{post.title | titlecase | slice: 1:30 }}">
+        <ng-template pTemplate="header"  class=" mx-auto">
+            <p-image 
+        [src]="post.image"
+        alt="Post Image" 
+        [preview]="true"
+        loading="lazy"
+        />
+        <span>{{ post.created_at | date: 'mediumDate' }}</span>
+        </ng-template>
+        <ng-template pTemplate="content">
+         <p>By: <p-badge severity="primary"  [value]="'@'+post.user.username"></p-badge></p>   
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="flex gap-3 mt-1">
+                <p class="view-more none font-bold text-black"><a [routerLink]="[post.id]">Read more <i class="pi pi-arrow-right"></i></a></p>
+                <!-- <p-button [routerLink]="[post.id]" label="View" class="w-full" styleClass="w-full" severity="primary" /> -->
+                <p-button label="Edit" *ngIf="canBeEdited" severity="secondary" class="w-full" styleClass="w-full" />
+                <p-button label="Delete" *ngIf="canBeDeleted" class="w-full" styleClass="w-full" />
+            </div>
+        </ng-template>
+    </p-card>
+</div>

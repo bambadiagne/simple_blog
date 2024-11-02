@@ -1,6 +1,6 @@
 <div *ngIf="form.visible" class="mb-0">
     <p-inputGroup>
-      <p-inputGroupAddon *ngIf="icon"class="p-inputgroup-addon">
+      <p-inputGroupAddon *ngIf="icon" class="p-inputgroup-addon">
         <i  [class]="icon"></i> <!-- Replace with your desired icon -->
       </p-inputGroupAddon>
       <input
@@ -12,6 +12,7 @@
         [readOnly]="!modifiable"
         (blur)="form.generateMessage()"
         [formControl]="form"
+        (keyup)="handleTextChange($event)"
       />
       <span *ngIf="prependText" class="p-inputgroup-addon">{{ prependText }}</span>
       <span *ngIf="appendText" class="p-inputgroup-addon">{{ appendText }}</span>
