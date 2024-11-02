@@ -11,57 +11,57 @@ export class PostsService {
     return await this.dbService.post.create({ data: createPostDto });
   }
 
-  async findAll(query:QueryPaginationDTO) {
-    
-    let where:Prisma.PostWhereInput={};
-    if(query.searchTerm){
+  async findAll(query: QueryPaginationDTO) {
+    let where: Prisma.PostWhereInput = {};
+    if (query.searchTerm) {
       console.log(query.searchTerm);
-      
-    where = {
-      OR:[
-        {
-          title:{
-            contains:query.searchTerm,
-            mode:"insensitive"
-          }
-        },
-        {
-          content:{
-            contains:query.searchTerm,
-            mode:"insensitive"
-          }
-        }
-      ]     
-  };
-  }
+
+      where = {
+        OR: [
+          {
+            title: {
+              contains: query.searchTerm,
+              mode: 'insensitive',
+            },
+          },
+          {
+            content: {
+              contains: query.searchTerm,
+              mode: 'insensitive',
+            },
+          },
+        ],
+      };
+    }
     return await this.dbService.post.findMany({
-      skip: (query.page-1)*query.perPage,
+      skip: (query.page - 1) * query.perPage,
       take: query.perPage,
-      where:where,
+      where: where,
       include: {
-      user: {
-        select: {
-        username: true,
-        id: true,
+        user: {
+          select: {
+            username: true,
+            id: true,
+          },
         },
       },
+      orderBy: {
+        created_at: 'desc',
       },
-      orderBy:{
-        created_at:"desc"
-      }
     });
   }
 
   async findOne(id: number) {
-    const post = await this.dbService.post.findUnique({ where: { id },
-    include:{
-      user:{
-        select:{
-          username:true,
-          id:true
+    const post = await this.dbService.post.findUnique({
+      where: { id },
+      include: {
+        user: {
+          select: {
+            username: true,
+            id: true,
+          },
         },
-      }
-    }
+      },
     });
     if (!post) {
       throw new BadRequestException(['Post not found']);
