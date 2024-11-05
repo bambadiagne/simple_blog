@@ -1,11 +1,14 @@
-import { IsNumber, IsOptional } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsInt, IsNumber, IsNumberString, IsOptional } from 'class-validator';
 export class QueryPaginationDTO {
   @IsOptional()
   @IsNumber()
-  page: number = 1;
+  @Type(() => Number)
+  page: number = 0;
   @IsOptional()
   @IsNumber()
-  perPage: number = 10;
+  @Type(() => Number)
+  perPage: number = 5;
   @IsOptional()
   sortBy?: string;
   @IsOptional()

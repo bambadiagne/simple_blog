@@ -33,10 +33,9 @@ export class PostsService {
         ],
       };
     }
-    return await this.dbService.post.findMany({
-      skip: (query.page - 1) * query.perPage,
-      take: query.perPage,
-      where: where,
+    const total = await this.dbService.post.count({ where });
+    const posts = await this.dbService.post.findMany({
+      where,
       include: {
         user: {
           select: {
@@ -45,10 +44,10 @@ export class PostsService {
           },
         },
       },
-      orderBy: {
-        created_at: 'desc',
-      },
+      skip: query.perPage * query.page,
+      take: query.perPage,
     });
+    return { data: posts, total };
   }
 
   async findOne(id: number) {
