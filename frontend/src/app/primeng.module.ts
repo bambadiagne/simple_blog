@@ -21,6 +21,9 @@ import { BadgeModule } from 'primeng/badge';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
+import { TagModule } from 'primeng/tag';
+import { CarouselModule } from 'primeng/carousel';
+import { PaginatorModule } from 'primeng/paginator';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -43,7 +46,10 @@ import { ImageModule } from 'primeng/image';
     FileUploadModule,
     ToastModule,
     BadgeModule,
-    CardModule
+    CardModule,
+    TagModule,
+    CarouselModule,
+    PaginatorModule
   ],
   providers: [PrimeNGConfig, MessageService]
 })

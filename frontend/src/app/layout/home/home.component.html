@@ -1,5 +1,5 @@
 <app-spinner [show]="loading"></app-spinner>
-
+<p-toast position="top-center" key="tc" />
 <div class="" *ngIf="!loading">
 
     <div class="w-full gradient-background pb-6">
@@ -31,21 +31,27 @@
         </div>
     </div>
 </div>
-<div>
+<div *ngIf="this.posts">
     <h1 class="text-black text-center">Recent Posts</h1>
-<div *ngIf="this.posts" class="flex flex-column lg:flex-row  justify-content-around md:justify-content-center mt-4">
+    <div class="card">
+        <p-carousel 
+            [value]="this.posts.data" 
+            [numVisible]="4" 
+            [numScroll]="3" 
+            [circular]="false" 
+            [responsiveOptions]="responsiveOptions">
+                <ng-template let-post pTemplate="item">
+                    <app-post-card [post]="post"></app-post-card>
+   
+                </ng-template>
+        </p-carousel>
+    </div>
+
+    <!-- <div *ngIf="this.posts" class="flex flex-column lg:flex-row  justify-content-around md:justify-content-center mt-4">
     @for (post of posts; track $index) {
         <app-post-card [post]="post"></app-post-card>
     }
-</div>
-</div>
-<div class="flex flex-column md:flex-row justify-content-center mt-5">
-    <div class="mx-4">
-        <h1 class="text-black text-center">Start sharing your stories today</h1>
-    </div>
-    <div class="mx-auto lg:mx-0">
-        <p-image src="/assets/images/write.svg" width="250px"> </p-image>
-    </div>
+</div> -->
 </div>
 
 </div>

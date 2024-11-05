@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBaseComponent } from '../formulaire-base';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 
@@ -7,8 +7,8 @@ import { MessageService, PrimeNGConfig } from 'primeng/api';
   templateUrl: './upload-file.component.html',
   styleUrl: './upload-file.component.css'
 })
-export class UploadFileComponent extends FormBaseComponent {
-  files = [];
+export class UploadFileComponent extends FormBaseComponent implements OnInit {
+  @Input() files = [];
   @Input() maxFile = 2;
   @Output() fileEmitter: EventEmitter<File> = new EventEmitter<File>();
   totalSize: number = 0;
@@ -20,6 +20,9 @@ export class UploadFileComponent extends FormBaseComponent {
     private messageService: MessageService
   ) {
     super();
+  }
+  ngOnInit(): void {
+    console.log('files', this.files);
   }
   choose(event, callback) {
     callback();

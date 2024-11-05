@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Post } from '../models/post';
 import { Router } from '@angular/router';
-import { UserResponse } from 'src/app/auth/models/user';
 
 @Component({
   selector: 'app-post-card',

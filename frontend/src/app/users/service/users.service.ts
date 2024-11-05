@@ -2,19 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { UserCreationPayload, UserLoginPayload } from 'src/app/auth/models/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
   $currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
+  endpoint = environment.apiUrl;
   constructor(private http: HttpClient) {}
   createUser(user: UserCreationPayload) {
-    return this.http.post('http://localhost:3000/users', user);
+    return this.http.post(`${this.endpoint}/users`, user);
   }
   login(user: UserLoginPayload) {
     return this.http
-      .post('http://localhost:3000/auth/login', user, {
+      .post(`${this.endpoint}/auth/login`, user, {
         withCredentials: true
       })
       .pipe(
@@ -27,17 +29,18 @@ export class UsersService {
       );
   }
   getCurrentUser() {
-    return this.http.get('http://localhost:3000/users/me').pipe(
+    return this.http.get(`${this.endpoint}/users/me`).pipe(
       tap({
         next: (response) => {
           this.$currentUser.next(response);
+          return response;
         }
       })
     );
   }
   refreshToken() {
     return this.http.post(
-      'http://localhost:3000/auth/refresh',
+      `${this.endpoint}/auth/refresh`,
       {},
       {
         withCredentials: true
@@ -47,7 +50,7 @@ export class UsersService {
   logout() {
     return this.http
       .post(
-        'http://localhost:3000/auth/logout',
+        `${this.endpoint}/auth/logout`,
         {},
         {
           withCredentials: true
@@ -56,8 +59,6 @@ export class UsersService {
       .pipe(
         tap({
           next: (response) => {
-            console.log('remove token', response);
-
             localStorage.removeItem('token');
             this.$currentUser.next(null);
           }

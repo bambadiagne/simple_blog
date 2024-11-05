@@ -1,0 +1,35 @@
+<app-spinner [show]="loading"></app-spinner>
+<div *ngIf="post" class="flex flex-column justify-content-center " >
+    <div class="bg-secondary border-round-lg flex justify-content-around shadow-5">
+        <div class="">
+            <p>{{post.user.username}}</p>
+            <p class="text-secondary">{{readingTime(post.content)}} · {{post.created_at | date: 'mediumDate'}}</p>
+        </div>
+        
+        <div class="mt-4 flex flex-column sm:flex-row">
+            <p-button icon="pi pi-comment" (onClick)="scrollToComments()" [text]="true" severity="contrast" />
+            <p-button icon="pi pi-twitter" [text]="true" severity="contrast" />
+            <p-button icon="pi pi-facebook" [text]="true" />
+            <p-button icon="pi pi-linkedin" [text]="true" />
+        </div>
+    </div>
+    
+    <div class="post-title">
+        <P class="text-left  sm:text-center  text-dark">{{post.title}}</P>
+    </div>
+    
+    <div class="post-content text-center" [innerHTML]="content">
+    </div>
+    
+    <div id="comments-section">
+        <!-- <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
+        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
+        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
+        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
+        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
+        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
+        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
+        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
+        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p> -->
+    </div>
+</div>

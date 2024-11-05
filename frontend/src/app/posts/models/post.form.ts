@@ -1,6 +1,7 @@
 import { FormGroup, Validators } from '@angular/forms';
 import { CustomFormControl } from 'src/app/shared/forms/custom-control';
 import { FormBase } from 'src/app/shared/forms/form-base';
+import { Post } from './post';
 
 export class CreatePostForm extends FormBase {
   public titleFormControl: CustomFormControl;
@@ -16,5 +17,10 @@ export class CreatePostForm extends FormBase {
       content: this.contentFormControl,
       image: this.imageFormControl
     });
+  }
+  init(post: Post) {
+    this.titleFormControl.setValue(post.title);
+    this.contentFormControl.setValue(post.content);
+    this.imageFormControl.setValue(post.image);
   }
 }

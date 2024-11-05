@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { PostsService } from '../services/posts.service';
-import { Router } from '@angular/router';
 import { Post } from '../models/post';
-import { UsersService } from 'src/app/users/service/users.service';
-import { UserResponse } from 'src/app/auth/models/user';
 import { PostFilterForm } from '../models/post-filter.form';
+import { ApiResponse } from 'src/app/shared/models/api-response';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-post-list',
@@ -16,10 +15,10 @@ export class PostListComponent implements OnInit, OnDestroy {
   loading = false;
   searchForm: PostFilterForm;
   private _destroy = new Subject<void>();
-  posts: Post[];
+  posts: ApiResponse<Post>;
   constructor(
     private _postsService: PostsService,
-    private router: Router
+    private messageService: MessageService
   ) {
     this.searchForm = new PostFilterForm();
   }
@@ -33,24 +32,38 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   filter(event: string) {
-    this.getPosts(event);
+    this.getPosts({ searchTerm: event });
   }
 
-  getPosts(searchTerm?: string) {
+  getPosts(query?: any) {
     this.loading = true;
 
     this._postsService
-      .getPosts(searchTerm)
+      .getPosts(query)
       .pipe(takeUntil(this._destroy))
       .subscribe({
         next: (posts) => {
-          console.log(posts);
           this.posts = posts;
+          this.loading = false;
         },
         error: (error) => {
-          console.log(error);
+          this.messageService.add({
+            severity: 'error',
+            key: 'tc',
+            summary: 'Error',
+            detail: 'Error while loading posts. Please try again later.',
+            life: 3000
+          });
+
+          this.loading = false;
         }
       });
-    this.loading = false;
+  }
+  onPageChange(event) {
+    const query = { page: event.page };
+    if (this.searchForm.form.value.searchTerm) {
+      query['searchTerm'] = this.searchForm.form.value.searchTerm;
+    }
+    this.getPosts(query);
   }
 }
