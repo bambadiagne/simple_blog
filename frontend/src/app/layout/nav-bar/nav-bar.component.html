@@ -1,7 +1,4 @@
-<p-menubar [model]="items">
-    <ng-template pTemplate="start">
-        <h3>WaxSaXalaat</h3>
-    </ng-template>
+<p-menubar [model]="items" class="w-full">
     <ng-template pTemplate="item" let-item let-root="root">
         <a pRipple class="flex align-items-center p-menuitem-link">
             <h4 class="ml-2">{{ item.label }}</h4>
@@ -13,10 +10,10 @@
         <div class="flex align-items-center gap-2">
             @if(user===null){
                 <div class="">
-                    <p-button label="Login" routerLink="/login"  severity="contrast" [text]="true" />
+                    <p-button label="Login" routerLink="/auth/login"  severity="contrast" [text]="true" />
                    </div>
                    <div>
-                    <p-button label="Register" routerLink="/register" severity="contrast" ></p-button>
+                    <p-button label="Register" routerLink="/auth/register" severity="contrast" ></p-button>
                </div>
         
             } @else {
@@ -30,5 +27,4 @@
        </div>
           </ng-template>
 </p-menubar>
-<!-- "node_modules/bootstrap/dist/css/bootstrap.min.css", -->
          

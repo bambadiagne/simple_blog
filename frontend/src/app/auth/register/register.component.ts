@@ -22,12 +22,14 @@ export class RegisterComponent implements OnDestroy {
   ) {
     this.createUserForm = new CreateUserForm();
   }
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
   submitForm() {
     if (this.createUserForm.valider()) {
       this.loading = true;
-        this.usersService.createUser(this.getUserPayload()).pipe(takeUntil(this._destroy$)).subscribe({
+      this.usersService
+        .createUser(this.getUserPayload())
+        .pipe(takeUntil(this._destroy$))
+        .subscribe({
           next: () => {
             this.loading = false;
             this.messages.addMessage({ type: MessageType.success, message: 'User created', fieldId: '' });
@@ -37,7 +39,7 @@ export class RegisterComponent implements OnDestroy {
             this.messages.addMessage({ type: MessageType.error, message: error.error.message.join('\n'), fieldId: '' });
             this.loading = false;
           }
-        })
+        });
     }
     this.messages.clear();
   }

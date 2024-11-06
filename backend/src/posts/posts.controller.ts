@@ -12,6 +12,7 @@ import {
   Req,
   ParseIntPipe,
   BadRequestException,
+  Query,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -19,6 +20,8 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { JwtGuard } from 'src/auth/guards/jwt.guard';
 import { CustomFileInterceptor } from 'src/common/interceptors/file.interceptor';
 import { S3Service } from 'src/common/services/s3.service';
+import { QueryPaginationDTO } from 'src/common/dto/query-pagination';
+import { PostOwnerGuard } from './guards/is-post-owner/is-post-owner.guard';
 
 @Controller('posts')
 export class PostsController {
@@ -50,17 +53,25 @@ export class PostsController {
     return await this.postsService.create(createPostDto);
   }
 
-  @Get()
-  findAll() {
-    return this.postsService.findAll();
+  @UseGuards(JwtGuard, PostOwnerGuard)
+  @Get('user/:id')
+  findAllByUser(
+    @Query() query: QueryPaginationDTO,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    return this.postsService.findAllByUser(query, id);
   }
 
+  @Get()
+  findAll(@Query() query: QueryPaginationDTO) {
+    return this.postsService.findAll(query);
+  }
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.postsService.findOne(id);
   }
 
-  @UseGuards(JwtGuard)
+  @UseGuards(JwtGuard, PostOwnerGuard)
   @Patch(':id')
   update(
     @Param('id', ParseIntPipe) id: number,
@@ -69,7 +80,7 @@ export class PostsController {
     return this.postsService.update(id, updatePostDto);
   }
 
-  @UseGuards(JwtGuard)
+  @UseGuards(JwtGuard, PostOwnerGuard)
   @Patch(':id/image')
   @UseInterceptors(
     new CustomFileInterceptor({
@@ -97,7 +108,7 @@ export class PostsController {
     return this.postsService.update(+id, { image });
   }
 
-  @UseGuards(JwtGuard)
+  @UseGuards(JwtGuard, PostOwnerGuard)
   @Delete(':id')
   async remove(@Param('id', ParseIntPipe) id: number, @Req() req) {
     const deletedPost = await this.postsService.remove(id, req.user.id);

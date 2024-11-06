@@ -1,0 +1,14 @@
+
+#forml{
+    min-width: 300px;
+    /* min-width:80vh; */
+}
+label{
+    color:#fff;
+}
+@media screen and (min-width: 800px) {
+    #forml{
+        min-width: 500px;
+    }
+    
+}

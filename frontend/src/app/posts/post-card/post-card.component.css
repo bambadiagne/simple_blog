@@ -1,0 +1,12 @@
+.post-card{
+    align-self: stretch;
+}
+
+.view-more:hover{
+    text-decoration: underline;
+    transform: scale(1.1);
+
+}
+.post-card:hover{
+    transform: scale(1.06);
+}

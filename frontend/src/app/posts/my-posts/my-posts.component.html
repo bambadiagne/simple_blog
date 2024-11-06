@@ -1,0 +1,8 @@
+<app-spinner [show]="loading"></app-spinner>
+<p-confirmDialog />
+<p-toast position="top-center" key="tc" />
+<div *ngIf="this.posts">
+
+<app-post-listing (deletePost)="deletePostCard($event)"  [isUserPosts]="true" (pageChange)="onPageChange($event)" [posts]="posts"></app-post-listing>
+
+</div>

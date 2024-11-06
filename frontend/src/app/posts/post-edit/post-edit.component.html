@@ -1,0 +1,42 @@
+<app-spinner  [show]="loading"></app-spinner>
+<p-toast position="top-center" key="tc" />
+
+<div class="" id="post-edit">
+    <div class="flex justify-content-center mt-7">
+
+    <div id="forml" class="border-round-lg bg-black-alpha-90 shadow-8  px-2 md:px-7  py-1">
+        <app-message *ngIf="this.messages.length > 0" [listeFunctionalMessage]="messages.listeFunctionalMessage"></app-message>
+
+        <div class="mt-0">
+            <h1 class="text-center text-white">Create an post</h1>
+        </div>
+        
+    <form >
+       <div class="flex flex-column ">
+        
+        <div class="">
+            <div class="flex flex-column ">
+                <div>
+                    <label for="title">Title</label>
+                    <app-input-text [form]="this.updatePostForm.titleFormControl" idInput="title" label="Title" [listeAttributs]="{ type: 'text' }"></app-input-text>
+                </div>
+                <div>
+                    <label for="content">Content</label>
+                    <app-text-editor [form]="this.updatePostForm.contentFormControl"></app-text-editor>
+                </div>
+                
+            </div>   
+        </div>
+        <div class="mr-2">
+            <label for="title">Image</label>
+            
+            <app-upload-file  [maxFile]="1" (fileEmitter)="onUploadFile($event)" ></app-upload-file>
+        </div>
+       </div>
+        <div class="flex justify-content-center mt-4">
+            <p-button (onClick)="updatePost()" label="Submit"></p-button>
+        </div>
+    </form>
+</div>
+    </div>
+</div>

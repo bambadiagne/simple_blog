@@ -1,0 +1,25 @@
+<div class="post-card card flex justify-content-center px-2 py-2 mx-auto" style="max-width: 300px;">
+    <p-card >
+            <p-image 
+        [src]="post.image"
+        alt="Post Image" 
+        [preview]="true"
+        loading="lazy"
+        width="200px"
+        />
+        <p-tag 
+            value="{{ post.created_at | date: 'mediumDate' }}" 
+            icon="pi pi-calendar"
+         />
+         <p>{{post.user.username | titlecase }}</p>   
+         <h3>{{post.title | titlecase | slice: 0:30 }}</h3>
+         <div >
+                <p class="view-more none font-bold text-black"><a routerLink="/posts/{{post.id}}">Read more <i class="pi pi-arrow-right"></i></a></p>
+            </div>
+        <div class="flex gap-3 mt-1">
+            <p-button label="Edit" (onClick)="emitEdit()" *ngIf="canBeEdited" severity="secondary" class="w-full" styleClass="w-full" />
+            <p-button label="Delete" (onClick)="emitDelete()" *ngIf="canBeDeleted" class="w-full" severity="danger"  styleClass="w-full" />
+        
+        </div>
+    </p-card>
+</div>

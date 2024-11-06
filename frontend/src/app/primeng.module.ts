@@ -14,9 +14,45 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessagesModule } from 'primeng/messages';
+import { EditorModule } from 'primeng/editor';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
+import { BadgeModule } from 'primeng/badge';
+import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
+import { CardModule } from 'primeng/card';
+import { ImageModule } from 'primeng/image';
+import { TagModule } from 'primeng/tag';
+import { CarouselModule } from 'primeng/carousel';
+import { PaginatorModule } from 'primeng/paginator';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
-  exports: [ButtonModule, InputTextModule, TableModule, DropdownModule, CalendarModule, MessagesModule, MenubarModule, AvatarModule, RippleModule, MenuModule, InputGroupModule, InputGroupAddonModule, ProgressSpinnerModule]
+  exports: [
+    ImageModule,
+    ButtonModule,
+    InputTextModule,
+    TableModule,
+    DropdownModule,
+    CalendarModule,
+    MessagesModule,
+    MenubarModule,
+    AvatarModule,
+    RippleModule,
+    MenuModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    ProgressSpinnerModule,
+    EditorModule,
+    FileUploadModule,
+    ToastModule,
+    BadgeModule,
+    CardModule,
+    TagModule,
+    CarouselModule,
+    PaginatorModule,
+    ConfirmDialogModule
+  ],
+  providers: [PrimeNGConfig, MessageService, ConfirmationService]
 })
 export class PrimeNgModule {}

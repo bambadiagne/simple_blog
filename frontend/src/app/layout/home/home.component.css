@@ -1,0 +1,40 @@
+.gradient-background{
+  min-height: 400px;
+  background: rgb(241,241,241);
+ background: linear-gradient(0deg, rgba(241,241,241,1) 3%, rgba(0,0,0,1) 43%);
+}
+.home-card{
+  background-color: rgba(0,0,0,1);
+  min-height: 200px;
+}
+@media screen and (min-width: 768px) {
+  .home-card:hover{
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    transform: scale(1.05);
+  }
+}
+.typewriter h2 {
+  color: #fff;
+  max-width: fit-content;
+  font-size: 6vw;
+  overflow: hidden; 
+  border-right: .05em solid #464545; 
+  white-space: nowrap;
+  margin: 0; 
+}
+
+.typing-erase {
+  animation: 
+    4s typing-erase 2s steps(50, end) infinite,
+    blink-caret .5s step-end infinite;
+}
+@keyframes typing-erase {
+  0% { width: 0 }
+  80% { width: 100% }
+  90%, 100% { width: 0 }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: gray }
+}

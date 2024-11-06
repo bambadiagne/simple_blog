@@ -1,0 +1,11 @@
+<app-spinner [show]="loading"></app-spinner>
+<p-toast position="top-center" key="tc" />
+<div *ngIf="this.posts">
+    <div  class="flex justify-content-center mt-7">
+        <div>
+            <app-input-text (textChange)="filter($event)"  icon="pi pi-search" [form]="searchForm.searchTermFormControl" label="Search" [listeAttributs]="{type:'text'}" ></app-input-text>
+        </div>
+</div>
+<app-post-listing (pageChange)="onPageChange($event)" [posts]="posts"></app-post-listing>
+
+</div>

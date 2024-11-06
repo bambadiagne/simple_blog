@@ -2,16 +2,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
-import { User, UserResponse } from 'src/app/auth/models/user';
+import { UserResponse } from 'src/app/auth/models/user';
 import { UsersService } from 'src/app/users/service/users.service';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
-export class NavBarComponent implements OnInit,OnDestroy {
+export class NavBarComponent implements OnInit, OnDestroy {
   items: MenuItem[] | undefined;
-  user:any = null;
+  user: any = null;
   private _destroy$ = new Subject<void>();
   profileItem = [
     {
@@ -22,10 +22,17 @@ export class NavBarComponent implements OnInit,OnDestroy {
           icon: 'pi pi-user'
         },
         {
-          label: 'My posts',
-          icon: 'pi pi-server',
+          label: 'New Post',
+          icon: 'pi pi-pen-to-square',
           command: () => {
-            this.router.navigate(['/my-posts']);
+            this.router.navigate(['/posts/new']);
+          }
+        },
+        {
+          label: 'My Posts',
+          icon: 'pi pi-list',
+          command: () => {
+            this.router.navigate(['/posts/my-posts']);
           }
         },
         {
@@ -42,7 +49,10 @@ export class NavBarComponent implements OnInit,OnDestroy {
       ]
     }
   ];
-  constructor(private usersService:UsersService,private router:Router) {
+  constructor(
+    private usersService: UsersService,
+    private router: Router
+  ) {
     this.usersService.getCurrentUser().pipe(takeUntil(this._destroy$)).subscribe();
   }
   ngOnDestroy(): void {
@@ -52,18 +62,24 @@ export class NavBarComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.items = [
       {
-        label: 'Home'
+        label: 'Home',
+        command: () => {
+          this.router.navigate(['/']);
+        }
       },
       {
-        label: 'Posts'
+        label: 'Posts',
+        command: () => {
+          this.router.navigate(['/posts']);
+        }
       },
 
       {
         label: 'Contact'
       }
     ];
-    this.usersService.$currentUser.subscribe((user:UserResponse) => {
+    this.usersService.$currentUser.subscribe((user: UserResponse) => {
       this.user = user;
-    })
+    });
   }
 }
