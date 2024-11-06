@@ -22,7 +22,7 @@ export class AuthController {
       maxAge: 604800000, // 7 days
     });
 
-    return { access_token: tokens.access_token };
+    return { access_token: tokens.access_token, userId: req.user.id };
   }
 
   @UseGuards(RefreshTokenGuard)

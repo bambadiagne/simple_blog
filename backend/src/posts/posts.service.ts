@@ -92,4 +92,24 @@ export class PostsService {
     }
     return deletedPost;
   }
+  async findAllByUser(query, id: number) {
+    let where: Prisma.PostWhereInput = {
+      user_id: id,
+    };
+    const total = await this.dbService.post.count({ where });
+    const posts = await this.dbService.post.findMany({
+      where,
+      include: {
+        user: {
+          select: {
+            username: true,
+            id: true,
+          },
+        },
+      },
+      skip: query.perPage * query.page,
+      take: query.perPage,
+    });
+    return { data: posts, total };
+  }
 }
