@@ -13,10 +13,13 @@
          />
          <p>{{post.user.username | titlecase }}</p>   
          <h3>{{post.title | titlecase | slice: 0:30 }}</h3>
-         <div class="flex gap-3 mt-1">
+         <div >
                 <p class="view-more none font-bold text-black"><a routerLink="/posts/{{post.id}}">Read more <i class="pi pi-arrow-right"></i></a></p>
-                <p-button label="Edit" *ngIf="canBeEdited" severity="secondary" class="w-full" styleClass="w-full" />
-                <p-button label="Delete" *ngIf="canBeDeleted" class="w-full" styleClass="w-full" />
             </div>
+        <div class="flex gap-3 mt-1">
+            <p-button label="Edit" (onClick)="emitEdit()" *ngIf="canBeEdited" severity="secondary" class="w-full" styleClass="w-full" />
+            <p-button label="Delete" (onClick)="emitDelete()" *ngIf="canBeDeleted" class="w-full" severity="danger"  styleClass="w-full" />
+        
+        </div>
     </p-card>
 </div>

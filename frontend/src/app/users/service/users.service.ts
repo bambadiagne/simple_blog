@@ -23,6 +23,7 @@ export class UsersService {
         tap({
           next: (response) => {
             localStorage.setItem('token', response['access_token']);
+            localStorage.setItem('userId', response['userId']);
             this.getCurrentUser().subscribe();
           }
         })

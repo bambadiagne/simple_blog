@@ -6,6 +6,7 @@ import { PostListComponent } from './post-list/post-list.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { mustBeYourPostGuard } from './guards/must-be-your-post.guard';
 import { PostEditComponent } from './post-edit/post-edit.component';
+import { UserPostsComponent } from './my-posts/my-posts.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
     path: 'new',
     component: NewPostComponent,
     canActivate: [mustBeAuthenticatedGuard]
+  },
+  {
+    path: 'my-posts',
+    component: UserPostsComponent
   },
   {
     path: 'edit/:id',

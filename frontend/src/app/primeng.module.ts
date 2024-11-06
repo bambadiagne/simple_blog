@@ -18,12 +18,13 @@ import { EditorModule } from 'primeng/editor';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { BadgeModule } from 'primeng/badge';
-import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
 import { TagModule } from 'primeng/tag';
 import { CarouselModule } from 'primeng/carousel';
 import { PaginatorModule } from 'primeng/paginator';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -49,8 +50,9 @@ import { PaginatorModule } from 'primeng/paginator';
     CardModule,
     TagModule,
     CarouselModule,
-    PaginatorModule
+    PaginatorModule,
+    ConfirmDialogModule
   ],
-  providers: [PrimeNGConfig, MessageService]
+  providers: [PrimeNGConfig, MessageService, ConfirmationService]
 })
 export class PrimeNgModule {}

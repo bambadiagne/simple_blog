@@ -11,8 +11,13 @@ export class PostCardComponent implements OnInit {
   @Input() post: Post;
   @Input() canBeDeleted: boolean = false;
   @Input() canBeEdited: boolean = false;
-  @Output() deletePost = new EventEmitter<Post>();
-  @Output() editPost = new EventEmitter<Post>();
+  @Output() cardDeletePost = new EventEmitter<number>();
   constructor(private router: Router) {}
   ngOnInit(): void {}
+  emitDelete() {
+    this.cardDeletePost.emit(this.post.id);
+  }
+  emitEdit() {
+    this.router.navigate(['/posts/edit', this.post.id]);
+  }
 }

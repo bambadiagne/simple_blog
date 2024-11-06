@@ -20,10 +20,16 @@ export class PostsService {
   getPostDetail(id: string): Observable<Post> {
     return this.http.get<Post>(`${this.endpoint}/posts/${id}`);
   }
+  getUserPosts(id: string, pagination?: any): Observable<ApiResponse<Post>> {
+    return this.http.get<ApiResponse<Post>>(`${this.endpoint}/posts/user/${id}`, { params: pagination });
+  }
   updatePost(id: number, post: any) {
     return this.http.patch(`${this.endpoint}/posts/${id}`, post);
   }
   updatePostImage(id: number, image: FormData) {
     return this.http.patch(`${this.endpoint}/posts/${id}/image`, image);
+  }
+  deletePost(id: number) {
+    return this.http.delete(`${this.endpoint}/posts/${id}`);
   }
 }

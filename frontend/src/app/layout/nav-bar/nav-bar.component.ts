@@ -22,10 +22,17 @@ export class NavBarComponent implements OnInit, OnDestroy {
           icon: 'pi pi-user'
         },
         {
-          label: 'My posts',
-          icon: 'pi pi-server',
+          label: 'New Post',
+          icon: 'pi pi-pen-to-square',
           command: () => {
             this.router.navigate(['/posts/new']);
+          }
+        },
+        {
+          label: 'My Posts',
+          icon: 'pi pi-list',
+          command: () => {
+            this.router.navigate(['/posts/my-posts']);
           }
         },
         {

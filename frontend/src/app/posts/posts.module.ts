@@ -7,9 +7,11 @@ import { PostListComponent } from './post-list/post-list.component';
 import { PostCardComponent } from './post-card/post-card.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
+import { PostListingComponent } from './post-listing/post-listing.component';
+import { UserPostsComponent } from './my-posts/my-posts.component';
 
 @NgModule({
-  declarations: [NewPostComponent, PostListComponent, PostCardComponent, PostDetailComponent, PostEditComponent],
+  declarations: [NewPostComponent, PostListComponent, PostCardComponent, PostDetailComponent, PostEditComponent, PostListingComponent, UserPostsComponent],
   exports: [PostCardComponent],
   imports: [CommonModule, SharedModule, PostRoutingModule]
 })

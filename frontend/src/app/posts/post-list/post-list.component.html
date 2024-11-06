@@ -6,18 +6,6 @@
             <app-input-text (textChange)="filter($event)"  icon="pi pi-search" [form]="searchForm.searchTermFormControl" label="Search" [listeAttributs]="{type:'text'}" ></app-input-text>
         </div>
 </div>
-<div  class="flex flex-wrap flex-column md:flex-row  justify-content-around md:justify-content-center mt-4">
-    @for (post of posts.data; track $index) {
-        <app-post-card class="" [post]="post"></app-post-card>
-    }
-</div>
+<app-post-listing (pageChange)="onPageChange($event)" [posts]="posts"></app-post-listing>
 
-<div class="mt-3 card flex justify-content-center">
-    <p-paginator 
-        (onPageChange)="onPageChange($event)" 
-        [first]="0" 
-        [rows]="3" 
-        [totalRecords]="this.posts.total" 
-        [rowsPerPageOptions]="[5]" />
-</div>
 </div>
