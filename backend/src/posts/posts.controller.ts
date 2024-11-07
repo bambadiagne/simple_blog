@@ -98,7 +98,7 @@ export class PostsController {
     if (!post) {
       throw new BadRequestException(['Post not found']);
     }
-    if (post.user_id !== req.user.id) {
+    if (post.user.id !== req.user.id) {
       throw new BadRequestException(['Unauthorized to update post']);
     }
     const image = await this.fileService.uploadFile(file);

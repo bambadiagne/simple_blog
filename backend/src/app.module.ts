@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { PostsModule } from './posts/posts.module';
 import { CommonModule } from './common/common.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { CommonModule } from './common/common.module';
     ConfigModule.forRoot({ isGlobal: true }),
     PostsModule,
     CommonModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

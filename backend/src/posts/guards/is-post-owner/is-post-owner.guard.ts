@@ -9,7 +9,7 @@ export class PostOwnerGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const userId = request.user.id;
     const post = await this.postsService.findOne(+request.params.id);
-    if (!post || post.user_id !== userId) {
+    if (!post || post.user.id !== userId) {
       return false;
     }
     return true;
