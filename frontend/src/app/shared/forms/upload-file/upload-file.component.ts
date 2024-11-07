@@ -21,9 +21,7 @@ export class UploadFileComponent extends FormBaseComponent implements OnInit {
   ) {
     super();
   }
-  ngOnInit(): void {
-    console.log('files', this.files);
-  }
+  ngOnInit(): void {}
   choose(event, callback) {
     callback();
   }

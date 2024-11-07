@@ -8,10 +8,11 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { MessageComponent } from './components/message/message.component';
 import { TextEditorComponent } from './forms/text-editor/text-editor.component';
 import { UploadFileComponent } from './forms/upload-file/upload-file.component';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
 @NgModule({
-  declarations: [InputTextComponent, SpinnerComponent, MessageComponent, TextEditorComponent, UploadFileComponent, FunctionalMessagePipe],
+  declarations: [InputTextComponent, SpinnerComponent, MessageComponent, TextEditorComponent, UploadFileComponent, FunctionalMessagePipe, SafeHtmlPipe],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, PrimeNgModule],
-  exports: [InputTextComponent, SpinnerComponent, MessageComponent, TextEditorComponent, UploadFileComponent, FunctionalMessagePipe, PrimeNgModule]
+  exports: [InputTextComponent, SpinnerComponent, MessageComponent, TextEditorComponent, UploadFileComponent, FunctionalMessagePipe, PrimeNgModule, SafeHtmlPipe]
 })
 export class SharedModule {}

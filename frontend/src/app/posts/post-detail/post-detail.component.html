@@ -18,18 +18,43 @@
         <P class="text-left  sm:text-center  text-dark">{{post.title}}</P>
     </div>
     
-    <div class="post-content text-center" [innerHTML]="content">
+    <div class="post-content text-center border-round-lg " [innerHTML]="content">
     </div>
     
-    <div id="comments-section">
-        <!-- <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
-        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
-        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
-        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
-        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
-        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
-        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
-        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p>
-        <p>sdjsldjsmdjsmdjsmdsmjdjsmdjsm</p> -->
+    <div #commentsSection class="mt-7 border-round-lg shadow-7">
+       <div class="flex">
+        <div>
+            <h2>Comments Section: <p-button [rounded]="true"  (onClick)="showDialog()" label="Add comment" /></h2>
+            
+        </div>
+        <div>
+        
+            
+        </div>
+          
+       </div>   
+        <!-- <app-new-comment></app-new-comment> -->
+        <div class="card flex justify-content-center">
+            <p-toast position="top-center" key="tc" />
+
+            <p-dialog [modal]="true"  [visible]="showComments" >
+                <ng-template pTemplate="headless">
+                    
+                    <div class="px-8 py-5 gap-4" style="min-width: 300px ;min-height:300px;border-radius:12px; background-image: radial-gradient(circle at left top, var(--primary-400), var(--primary-700))">
+                        <h1>Add comment</h1>
+                        <div class="mt-3">
+                            <app-text-editor style="min-width: 300px;" [form]="newCommentForm.commentFormControl"></app-text-editor>
+                        </div>
+                        <div class="text-center mt-3">
+                            <p-button label="Submit" (onClick)="addComment()" severity="contrast" class="border-round-sm mr-2" />
+                            <p-button label="Close" severity="danger" (onClick)="showDialog()"  ></p-button>
+                        </div>
+                    </div>
+                </ng-template>
+                
+            </p-dialog>
+        </div>
+
+        <app-comments-list (emitDelete)="onDeleteComment($event)" [comments]="this.post.comments" ></app-comments-list>
     </div>
 </div>

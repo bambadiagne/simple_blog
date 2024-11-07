@@ -8,8 +8,6 @@ export const mustBeAuthenticatedGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   return userService.getCurrentUser().pipe(
     map((user) => {
-      console.log(user);
-
       if (!user) {
         return router.createUrlTree(['/auth/login']);
       }

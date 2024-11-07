@@ -21,6 +21,5 @@ export class InputTextComponent extends FormBaseComponent {
   }
   handleTextChange(event) {
     this.textChange.emit(event.target.value);
-    console.log('Text changed', event);
   }
 }

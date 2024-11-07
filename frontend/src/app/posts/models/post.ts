@@ -1,5 +1,5 @@
 import { UserResponse } from 'src/app/auth/models/user';
-
+import { Comment } from 'src/app/comments/models/comment';
 export interface Post {
   id?: number;
   title: string;
@@ -9,4 +9,5 @@ export interface Post {
   created_at?: Date;
   updated_at?: Date;
   user?: UserResponse;
+  comments: Comment[];
 }

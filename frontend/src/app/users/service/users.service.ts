@@ -40,13 +40,22 @@ export class UsersService {
     );
   }
   refreshToken() {
-    return this.http.post(
-      `${this.endpoint}/auth/refresh`,
-      {},
-      {
-        withCredentials: true
-      }
-    );
+    return this.http
+      .post(
+        `${this.endpoint}/auth/refresh`,
+        {},
+        {
+          withCredentials: true
+        }
+      )
+      .pipe(
+        tap({
+          next: (response) => {
+            const decodedToken = JSON.parse(atob(response['access_token'].split('.')[1]));
+            localStorage.setItem('userId', decodedToken.id);
+          }
+        })
+      );
   }
   logout() {
     return this.http
