@@ -9,10 +9,11 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostListingComponent } from './post-listing/post-listing.component';
 import { UserPostsComponent } from './my-posts/my-posts.component';
+import { CommentsModule } from '../comments/comments.module';
 
 @NgModule({
   declarations: [NewPostComponent, PostListComponent, PostCardComponent, PostDetailComponent, PostEditComponent, PostListingComponent, UserPostsComponent],
   exports: [PostCardComponent],
-  imports: [CommonModule, SharedModule, PostRoutingModule]
+  imports: [CommonModule, SharedModule, PostRoutingModule, CommentsModule]
 })
 export class PostsModule {}

@@ -14,8 +14,6 @@ export class PostsService {
   async findAll(query: QueryPaginationDTO) {
     let where: Prisma.PostWhereInput = {};
     if (query.searchTerm) {
-      console.log(query.searchTerm);
-
       where = {
         OR: [
           {
@@ -53,11 +51,28 @@ export class PostsService {
   async findOne(id: number) {
     const post = await this.dbService.post.findUnique({
       where: { id },
-      include: {
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        comments: {
+          select: {
+            id: true,
+            user: {
+              select: {
+                id: true,
+                username: true,
+                email: true,
+              },
+            },
+            created_at: true,
+            content: true,
+          },
+        },
         user: {
           select: {
-            username: true,
             id: true,
+            username: true,
           },
         },
       },

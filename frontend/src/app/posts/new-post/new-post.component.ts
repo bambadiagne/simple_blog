@@ -29,7 +29,6 @@ export class NewPostComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {}
   onUploadFile(event) {
-    console.log('File uploaded', event);
     this.createPostForm.form.patchValue({ image: event });
   }
   createPost() {

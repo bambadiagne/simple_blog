@@ -25,6 +25,7 @@ import { TagModule } from 'primeng/tag';
 import { CarouselModule } from 'primeng/carousel';
 import { PaginatorModule } from 'primeng/paginator';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -51,7 +52,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     TagModule,
     CarouselModule,
     PaginatorModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DialogModule
   ],
   providers: [PrimeNGConfig, MessageService, ConfirmationService]
 })
