@@ -3,7 +3,7 @@ import { CreateUserForm } from '../models/user.form';
 import { UsersService } from 'src/app/users/service/users.service';
 import { UserRole } from '../models/user.role';
 import { Router } from '@angular/router';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { ListeFunctionalMessage, MessageType } from 'src/app/shared/models/message-fonctionnel';
 
 @Component({
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnDestroy {
             this.router.navigate(['/login']);
           },
           error: (error) => {
-            this.messages.addMessage({ type: MessageType.error, message: error.error.message.join('\n'), fieldId: '' });
+            this.messages.addMessage({ type: MessageType.error, message: error.error.message.message, fieldId: '' });
             this.loading = false;
           }
         });

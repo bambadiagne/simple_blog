@@ -5,16 +5,16 @@ export enum UserRole {
   ADMIN = 'ADMIN',
 }
 export class CreateUserDto {
-  @IsNotEmpty({ message: "Le nom d'utilisateur est obligatoire" })
+  @IsNotEmpty({ message: 'Username is required' })
   username: string;
-  @IsEmail({}, { message: 'Email invalide' })
+  @IsEmail({}, { message: 'Invalid email' })
   email: string;
-  @IsNotEmpty({ message: 'Le mot de passe est obligatoire' })
+  @IsNotEmpty({ message: 'Password is required' })
   @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/, {
     message:
-      'Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial',
+      'Password must be at least 8 characters long, contain one uppercase letter, one number, and one special character',
   })
   password: string;
-  @IsEnum(UserRole, { message: 'Le role doit être user ou admin' })
+  @IsEnum(UserRole, { message: 'Role must be either user or admin' })
   role: UserRole;
 }

@@ -47,7 +47,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         this.loading = false;
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message.join('\n'), life: 2000 });
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message.message, life: 2000 });
       }
     });
     document.getElementById('post-edit').scrollIntoView({ behavior: 'smooth' });
@@ -69,7 +69,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
           },
           error: (error) => {
             this.loading = false;
-            this.messages.addMessage({ type: MessageType.error, message: error.error.message.join('\n'), fieldId: '' });
+            this.messages.addMessage({ type: MessageType.error, message: error.error.message.message, fieldId: '' });
           }
         });
       this.messages.clear();

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
@@ -8,6 +8,10 @@ import { ConfigModule } from '@nestjs/config';
 import { PostsModule } from './posts/posts.module';
 import { CommonModule } from './common/common.module';
 import { CommentsModule } from './comments/comments.module';
+import { LoggerModule } from './logger/logger.module';
+import { CustomLogger } from './logger/logger.service';
+import { APP_FILTER } from '@nestjs/core';
+import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
 
 @Module({
   imports: [
@@ -18,8 +22,16 @@ import { CommentsModule } from './comments/comments.module';
     PostsModule,
     CommonModule,
     CommentsModule,
+    LoggerModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      useClass: GlobalExceptionFilter,
+      provide: APP_FILTER,
+    },
+  ],
+  exports: [],
 })
 export class AppModule {}

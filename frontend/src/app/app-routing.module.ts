@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './layout/home/home.component';
 
 const routes: Routes = [
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
-  { path: 'posts', loadChildren: () => import('./posts/posts.module').then((m) => m.PostsModule) },
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule), title: 'Auth' },
+  { path: 'posts', loadChildren: () => import('./posts/posts.module').then((m) => m.PostsModule), title: 'Posts' },
+  { path: '', component: HomeComponent, pathMatch: 'full', title: 'Home' },
   { path: '**', redirectTo: 'home' }
 ];
 

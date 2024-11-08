@@ -101,6 +101,13 @@ export class PostDetailComponent implements OnInit, OnDestroy {
           },
           error: (error) => {
             this.loading = false;
+            this.messageService.add({
+              severity: 'error',
+              key: 'tc',
+              summary: 'Error',
+              detail: error.error.message.message,
+              life: 2000
+            });
           }
         });
     }
@@ -113,6 +120,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._destroy))
       .subscribe({
         next: (comment) => {
+          this.loading = false;
           this.messageService.add({
             severity: 'success',
             key: 'tc',
@@ -137,5 +145,11 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       content: this.newCommentForm.commentFormControl.value,
       post_id: this.post.id
     };
+  }
+  shareOnX() {
+    window.open(`https://twitter.com/intent/tweet?text=${this.post.title}&url=${window.location.href}&hashtags=WaxSaXalaat`, '_blank');
+  }
+  shareOnLinkedin() {
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`, '_blank');
   }
 }

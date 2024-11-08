@@ -51,7 +51,7 @@ export class PostListComponent implements OnInit, OnDestroy {
             severity: 'error',
             key: 'tc',
             summary: 'Error',
-            detail: 'Error while loading posts. Please try again later.',
+            detail: error.error.message.message,
             life: 3000
           });
 

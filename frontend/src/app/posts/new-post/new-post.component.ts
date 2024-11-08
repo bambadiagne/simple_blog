@@ -53,7 +53,7 @@ export class NewPostComponent implements OnInit, OnDestroy {
           },
           error: (error) => {
             this.loading = false;
-            this.messages.addMessage({ type: MessageType.error, message: error.error.message.join('\n'), fieldId: '' });
+            this.messages.addMessage({ type: MessageType.error, message: error.error.message.message, fieldId: '' });
           }
         });
       this.messages.clear();

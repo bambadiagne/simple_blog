@@ -4,7 +4,7 @@ import { UsersService } from 'src/app/users/service/users.service';
 import { inject } from '@angular/core';
 import { Post } from '../models/post';
 import { UserResponse } from 'src/app/auth/models/user';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 export const mustBeYourPostGuard: CanActivateFn = (route, state) => {
   const postService = inject(PostsService);
@@ -16,7 +16,7 @@ export const mustBeYourPostGuard: CanActivateFn = (route, state) => {
       return postService.getPostDetail(postId).pipe(
         map((post: Post) => {
           route.data = post;
-          return post.user_id === user.id;
+          return post.user.id === user.id;
         })
       );
     })

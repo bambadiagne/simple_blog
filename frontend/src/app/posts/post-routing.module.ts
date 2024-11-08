@@ -11,12 +11,14 @@ import { UserPostsComponent } from './my-posts/my-posts.component';
 const routes: Routes = [
   {
     path: '',
-    component: PostListComponent
+    component: PostListComponent,
+    title: 'Posts List'
   },
   {
     path: 'new',
     component: NewPostComponent,
-    canActivate: [mustBeAuthenticatedGuard]
+    canActivate: [mustBeAuthenticatedGuard],
+    title: 'New Post'
   },
   {
     path: 'my-posts',
@@ -25,11 +27,13 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: PostEditComponent,
-    canActivate: [mustBeAuthenticatedGuard, mustBeYourPostGuard]
+    canActivate: [mustBeAuthenticatedGuard, mustBeYourPostGuard],
+    title: 'Edit Post'
   },
   {
     path: ':id',
-    component: PostDetailComponent
+    component: PostDetailComponent,
+    title: 'Post Detail'
   }
 ];
 

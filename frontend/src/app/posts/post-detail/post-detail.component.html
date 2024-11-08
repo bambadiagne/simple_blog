@@ -6,11 +6,10 @@
             <p class="text-secondary">{{readingTime(post.content)}} · {{post.created_at | date: 'mediumDate'}}</p>
         </div>
         
-        <div class="mt-4 flex flex-column sm:flex-row">
+        <div class="mt-0 sm:mt-4 flex flex-column sm:flex-row">
             <p-button icon="pi pi-comment" (onClick)="scrollToComments()" [text]="true" severity="contrast" />
-            <p-button icon="pi pi-twitter" [text]="true" severity="contrast" />
-            <p-button icon="pi pi-facebook" [text]="true" />
-            <p-button icon="pi pi-linkedin" [text]="true" />
+            <p-button icon="pi pi-twitter" (onClick)="shareOnX()"  [text]="true" severity="contrast" />
+            <p-button icon="pi pi-linkedin" (onClick)="shareOnLinkedin()" [text]="true" />
         </div>
     </div>
     

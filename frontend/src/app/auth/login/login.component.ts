@@ -32,13 +32,13 @@ export class LoginComponent implements OnDestroy {
         .login(this.getUserPayload())
         .pipe(takeUntil(this._destroy$))
         .subscribe({
-          next: () => {
+          next: (res) => {
             this.loading = false;
             this.messages.addMessage({ type: MessageType.success, message: 'Login successful', fieldId: '' });
             this.router.navigate(['/']);
           },
           error: (error) => {
-            this.messages.addMessage({ type: MessageType.error, message: error.error.message.join('\n'), fieldId: '' });
+            this.messages.addMessage({ type: MessageType.error, message: error.error.message.message, fieldId: '' });
             this.loading = false;
           }
         });

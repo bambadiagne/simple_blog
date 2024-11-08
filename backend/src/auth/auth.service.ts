@@ -18,7 +18,7 @@ export class AuthService {
       return user;
     }
     throw new UnauthorizedException({
-      message: ['Combinaison email/mot de passe invalide'],
+      message: 'Invalid email/password combination',
       status: false,
     });
   }
