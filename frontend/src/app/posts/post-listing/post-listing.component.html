@@ -2,6 +2,9 @@
     @for (post of posts.data; track $index) {
         <app-post-card (cardDeletePost)="emitDelete($event)"  [canBeDeleted]="isUserPosts" [canBeEdited]="isUserPosts" class="flex" [post]="post"></app-post-card>
     }
+    @empty {
+        <h2 class="text-center">No posts in this moment</h2>
+      }
 </div>
 <div class="mt-3 card flex justify-content-center">
     <p-paginator 

@@ -76,8 +76,9 @@ export class PostDetailComponent implements OnInit, OnDestroy {
         detail: 'You need to be logged in to comment',
         life: 2000
       });
+    } else {
+      this.showComments = !this.showComments;
     }
-    this.showComments = !this.showComments;
   }
   addComment() {
     if (this.newCommentForm.valider()) {
@@ -100,6 +101,8 @@ export class PostDetailComponent implements OnInit, OnDestroy {
             this.loading = false;
           },
           error: (error) => {
+            console.log('error', error);
+
             this.loading = false;
             this.messageService.add({
               severity: 'error',

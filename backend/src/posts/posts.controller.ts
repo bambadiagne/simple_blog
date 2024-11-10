@@ -55,7 +55,7 @@ export class PostsController {
     );
     const image = await this.fileService.uploadFile(file);
     if (!image) {
-      throw new BadRequestException(['Error uploading file']);
+      throw new BadRequestException('Error uploading file');
     }
     createPostDto.image = image;
     createPostDto.user_id = req.user.id;
@@ -116,14 +116,14 @@ export class PostsController {
     );
     const post = await this.postsService.findOne(id);
     if (!post) {
-      throw new BadRequestException(['Post not found']);
+      throw new BadRequestException('Post not found');
     }
     if (post.user.id !== req.user.id) {
-      throw new BadRequestException(['Unauthorized to update post']);
+      throw new BadRequestException('Unauthorized to update post');
     }
     const image = await this.fileService.uploadFile(file);
     if (!image) {
-      throw new BadRequestException(['Error uploading file']);
+      throw new BadRequestException('Error uploading file');
     }
     return this.postsService.update(+id, { image });
   }

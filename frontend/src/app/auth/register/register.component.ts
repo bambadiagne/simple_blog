@@ -33,7 +33,7 @@ export class RegisterComponent implements OnDestroy {
           next: () => {
             this.loading = false;
             this.messages.addMessage({ type: MessageType.success, message: 'User created', fieldId: '' });
-            this.router.navigate(['/login']);
+            this.router.navigate(['/auth/login']);
           },
           error: (error) => {
             this.messages.addMessage({ type: MessageType.error, message: error.error.message.message, fieldId: '' });

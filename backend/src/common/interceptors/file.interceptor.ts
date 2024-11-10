@@ -51,16 +51,16 @@ export class CustomFileInterceptor implements NestInterceptor {
     }
 
     if (file.size > this.maxSize) {
-      throw new PayloadTooLargeException([
+      throw new PayloadTooLargeException(
         `File size (${(file.size / 1024 / 1024).toFixed(2)}MB) exceeds the limit of ${(this.maxSize / 1024 / 1024).toFixed(2)}MB`,
-      ]);
+      );
     }
 
     const extension = path.extname(file.originalname).toLowerCase().slice(1);
     if (!this.allowedExtensions.includes(extension)) {
-      throw new BadRequestException([
+      throw new BadRequestException(
         `File type .${extension} is not allowed. Allowed types: ${this.allowedExtensions.join(', ')}`,
-      ]);
+      );
     }
 
     return next.handle();

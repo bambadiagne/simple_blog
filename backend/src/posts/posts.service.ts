@@ -78,7 +78,7 @@ export class PostsService {
       },
     });
     if (!post) {
-      throw new BadRequestException(['Post not found']);
+      throw new BadRequestException('Post not found');
     }
     return post;
   }
@@ -89,7 +89,7 @@ export class PostsService {
       data: updatePostDto,
     });
     if (!post) {
-      throw new BadRequestException(['Post not found']);
+      throw new BadRequestException('Post not found');
     }
 
     return await this.dbService.post.update({
@@ -103,7 +103,7 @@ export class PostsService {
       where: { user_id: userId, id },
     });
     if (!deletedPost) {
-      throw new BadRequestException(['Post not found']);
+      throw new BadRequestException('Post not found');
     }
     return deletedPost;
   }

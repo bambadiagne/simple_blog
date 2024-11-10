@@ -31,9 +31,13 @@
         </div>
     </div>
 </div>
-<div *ngIf="this.posts">
+<div >
     <h1 class="text-black text-center">Recent Posts</h1>
     <div class="card">
+        @if(this.posts.total==0){
+            <h2 class="text-center" >No posts in this moment</h2 >
+  
+        }
         <p-carousel 
             [value]="this.posts.data" 
             [numVisible]="4" 

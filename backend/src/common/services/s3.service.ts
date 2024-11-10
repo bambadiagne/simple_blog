@@ -1,9 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { S3 } from 'aws-sdk';
+import { IStorageService } from './storage.service';
 
 @Injectable()
-export class S3Service {
+export class S3Service implements IStorageService {
   private s3: S3;
   constructor(private configService: ConfigService) {
     this.s3 = new S3({
@@ -20,12 +21,12 @@ export class S3Service {
           Bucket: this.configService.get('AWS_BUCKET_NAME'),
           Key: `WaxSaXalaat_${Date.now()}_${file.originalname}`,
           Body: file.buffer,
+          ACL: 'public-read',
         })
         .promise();
       return result.Location;
     } catch (error) {
-      console.log(error);
-      throw new BadRequestException(['Error uploading file']);
+      throw new BadRequestException('Error uploading file');
     }
   }
   async deleteFile(key: string) {
@@ -40,7 +41,7 @@ export class S3Service {
         .promise();
     } catch (error) {
       console.log(error);
-      throw new BadRequestException(['Error deleting file']);
+      throw new BadRequestException('Error deleting file');
     }
   }
 }

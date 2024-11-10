@@ -11,10 +11,13 @@
             <div innerHTML="{{ comment.content | safeHtml: securityContext }}"></div>
           </div>
         </div>
-        <div class="mt-3" *ngIf="(this.comment.user.id == currentUserId)">
+        <div class="mt-3" *ngIf="(comment.user.id == currentUserId)">
             <p-button icon="pi pi-trash" [text]="true" (onClick)="deleteComment(comment.id)"  severity="danger"></p-button>
         </div>
       </div>
+    }
+    @empty {
+      <h2 class="text-center">No comments in this post</h2>
     }
   </div>
 </div>

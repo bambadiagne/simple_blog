@@ -1,5 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.wasaxalaat.com',
-  apiKey: 'prod-api-key'
+  apiUrl: window['env']['apiUrl'] || 'http://localhost:8080'
 };
