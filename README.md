@@ -18,6 +18,17 @@ This is a full-stack blog made with Angular,Nest,Postgres,Docker,Prisma,AWS. I h
 - Pagination and search for posts
 - Logging system(file based) 
 
+# Usage
+
+To load a video in markdown, you can use HTML's `<video>` tag. Here is an example:
+
+## Usage
+
+To see a demo of the blog in action, watch the video below:
+<video width="600" controls>
+    <source src="video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
 ## Installation
 1. Clone the repository: `git clone https://github.com/bambadiagne/simple_blog.git`
