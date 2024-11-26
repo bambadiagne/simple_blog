@@ -50,4 +50,12 @@ export class UsersService {
       },
     });
   }
+  async update(id: number, data: any) {
+    return await this._db.user.update({
+      where: {
+        id,
+      },
+      data,
+    });
+  }
 }

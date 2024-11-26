@@ -76,6 +76,14 @@ export class PostDetailComponent implements OnInit, OnDestroy {
         detail: 'You need to be logged in to comment',
         life: 2000
       });
+    } else if (!this.user.is_verified) {
+      this.messageService.add({
+        severity: 'error',
+        key: 'tc',
+        summary: 'Error',
+        detail: 'You need to verify your email before commenting',
+        life: 2000
+      });
     } else {
       this.showComments = !this.showComments;
     }

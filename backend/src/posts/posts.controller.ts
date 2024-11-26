@@ -13,15 +13,13 @@ import {
   ParseIntPipe,
   BadRequestException,
   Query,
-  Inject,
-  Logger,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { JwtGuard } from 'src/auth/guards/jwt.guard';
 import { CustomFileInterceptor } from 'src/common/interceptors/file.interceptor';
-import { S3Service } from 'src/common/services/s3.service';
+import { S3Service } from 'src/common/services/storage/s3.service';
 import { QueryPaginationDTO } from 'src/common/dto/query-pagination';
 import { PostOwnerGuard } from './guards/is-post-owner/is-post-owner.guard';
 import { CustomLogger } from 'src/logger/logger.service';

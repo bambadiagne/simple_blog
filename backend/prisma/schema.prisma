@@ -12,36 +12,46 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-model User{
-  id Int @id @default(autoincrement())
-  username String 
-  email String
-  password String
-  role String
+
+model User {
+  id          Int       @id @default(autoincrement())
+  username    String
+  email       String
+  password    String
+  role        String
   is_verified Boolean
-  posts Post[]
-  comments   Comment[] 
+  posts       Post[]
+  comments    Comment[]
+  codeVerification CodeVerification[]
 }
 
-model Post{
-  id Int @id @default(autoincrement())
-  title String
-  content String
-  user_id Int
-  image String
-  user User @relation(fields: [user_id], references: [id])
+model CodeVerification {
+  id         Int      @id @default(autoincrement())
+  code       String
+  user_id    Int
+  user       User     @relation(fields: [user_id], references: [id])
+  created_at DateTime @default(now())
+}
+
+model Post {
+  id         Int       @id @default(autoincrement())
+  title      String
+  content    String
+  user_id    Int
+  image      String
+  user       User      @relation(fields: [user_id], references: [id])
   comments   Comment[]
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-}
-model Comment{
-  id Int @id @default(autoincrement())
-  content String
-  user_id Int
-  post_id Int
-  post Post @relation(fields: [post_id], references: [id])
-  user User @relation(fields: [user_id], references: [id])
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
 }
 
+model Comment {
+  id         Int      @id @default(autoincrement())
+  content    String
+  user_id    Int
+  post_id    Int
+  post       Post     @relation(fields: [post_id], references: [id])
+  user       User     @relation(fields: [user_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}

@@ -12,7 +12,8 @@ import { LoggerModule } from './logger/logger.module';
 import { CustomLogger } from './logger/logger.service';
 import { APP_FILTER } from '@nestjs/core';
 import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
-
+import { CodeVerificationModule } from './code-verification/code-verification.module';
+import { ScheduleModule } from '@nestjs/schedule';
 @Module({
   imports: [
     DatabaseModule,
@@ -23,6 +24,8 @@ import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
     CommonModule,
     CommentsModule,
     LoggerModule,
+    CodeVerificationModule,
+    ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [
