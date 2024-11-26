@@ -26,6 +26,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { PaginatorModule } from 'primeng/paginator';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
+import { InputOtpModule } from 'primeng/inputotp';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -53,7 +54,8 @@ import { DialogModule } from 'primeng/dialog';
     CarouselModule,
     PaginatorModule,
     ConfirmDialogModule,
-    DialogModule
+    DialogModule,
+    InputOtpModule
   ],
   providers: [PrimeNGConfig, MessageService, ConfirmationService]
 })

@@ -47,7 +47,7 @@ export class UsersController {
   @UseGuards(JwtGuard)
   @Post('verify')
   async verify(@Req() req, @Body() codeVerificationDto: CodeVerificationDto) {
-    const code = await this.codeVerificationService.findByCode(
+    const code = await this.codeVerificationService.findByCodeAndUser(
       codeVerificationDto.code,
       req.user.id,
     );
@@ -57,7 +57,7 @@ export class UsersController {
     await this.usersService.update(req.user.id, { is_verified: true });
     await this.codeVerificationService.delete(code.id);
 
-    return { message: 'Code verified' };
+    return { message: 'Verification successful', status: true };
   }
   @UseGuards(JwtGuard)
   @Post('resend')
@@ -65,6 +65,10 @@ export class UsersController {
     const user = await this.usersService.findById(req.user.id);
     if (user.is_verified) {
       throw new BadRequestException('User is already verified');
+    }
+    const oldCode = await this.codeVerificationService.findByUser(req.user.id);
+    if (oldCode) {
+      throw new BadRequestException('Code already sent.Wait for 15 minutes');
     }
     const code = await this.codeVerificationService.create(req.user.id);
     await this.emailService.sendEmail(

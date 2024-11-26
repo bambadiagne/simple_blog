@@ -26,7 +26,14 @@ export class CodeVerificationService {
         Math.random() * (Math.pow(10, length) - Math.pow(10, length - 1) - 1),
     );
   };
-  async findByCode(code: string, user_id: number) {
+  async findByUser(user_id: number) {
+    return await this.dbService.codeVerification.findFirst({
+      where: {
+        user_id,
+      },
+    });
+  }
+  async findByCodeAndUser(code: string, user_id: number) {
     return await this.dbService.codeVerification.findFirst({
       where: {
         code,

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { UserCreationPayload, UserLoginPayload } from 'src/app/auth/models/user';
+import { UserCreationPayload, UserLoginPayload, UserResponse } from 'src/app/auth/models/user';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -30,9 +30,9 @@ export class UsersService {
       );
   }
   getCurrentUser() {
-    return this.http.get(`${this.endpoint}/users/me`).pipe(
+    return this.http.get<UserResponse>(`${this.endpoint}/users/me`).pipe(
       tap({
-        next: (response) => {
+        next: (response: UserResponse) => {
           this.$currentUser.next(response);
           return response;
         }
@@ -84,5 +84,11 @@ export class UsersService {
     const exp = payload.exp;
 
     return exp > new Date().getTime() / 1000;
+  }
+  verifyAccount(code: string) {
+    return this.http.post(`${this.endpoint}/users/verify`, { code });
+  }
+  resend() {
+    return this.http.post(`${this.endpoint}/users/resend`, {});
   }
 }
