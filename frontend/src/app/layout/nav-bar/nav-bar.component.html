@@ -19,7 +19,7 @@
             } @else {
                 <div>
                     <p-menu #menu [model]="profileItem" [popup]="true" />
-                    <p-avatar [label]="user.username" shape="circle" styleClass="mr-2" (click)="menu.toggle($event)"></p-avatar>
+                    <p-avatar [image]="user.picture" shape="circle" styleClass="mr-2" (click)="menu.toggle($event)"></p-avatar>
              
                 </div>
             } 

@@ -27,6 +27,7 @@ export class UsersService {
         password: await bcrypt.hash(password, 10),
         role,
         is_verified: false,
+        picture: createUserDto.picture || null,
       },
     });
   }

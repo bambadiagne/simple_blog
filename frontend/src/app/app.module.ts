@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
@@ -14,12 +13,20 @@ import { CustomPageTitleStrategy } from './shared/strategies/custom-title.strate
 import { TitleStrategy } from '@angular/router';
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, LayoutModule, AuthModule, PostsModule, BrowserAnimationsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LayoutModule,
+    AuthModule,
+    PostsModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+  ],
   exports: [PrimeNgModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: TitleStrategy, useClass: CustomPageTitleStrategy }
+    { provide: TitleStrategy, useClass: CustomPageTitleStrategy },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

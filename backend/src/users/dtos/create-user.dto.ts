@@ -17,4 +17,5 @@ export class CreateUserDto {
   password: string;
   @IsEnum(UserRole, { message: 'Role must be either user or admin' })
   role: UserRole;
+  picture?: string;
 }

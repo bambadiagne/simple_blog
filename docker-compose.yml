@@ -1,4 +1,3 @@
-version: '3'
 
 services:
 
@@ -13,6 +12,7 @@ services:
     environment:
       - NODE_ENV=${NODE_ENV}
       - API_URL=${API_URL}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -37,6 +37,7 @@ services:
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - AWS_MAIL_SENDER=${AWS_MAIL_SENDER}
       - AWS_BUCKET_NAME=${AWS_BUCKET_NAME}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
     volumes:
       - ./backend:/app
       - /app/node_modules  

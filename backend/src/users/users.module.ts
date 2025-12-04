@@ -4,10 +4,10 @@ import { UsersController } from './users.controller';
 import { DatabaseModule } from 'src/database/database.module';
 import { CodeVerificationModule } from 'src/code-verification/code-verification.module';
 import { CommonModule } from 'src/common/common.module';
-
+import { GoogleAuthService } from 'src/auth/google.service';
 @Module({
   controllers: [UsersController],
-  providers: [UsersService],
+  providers: [UsersService, GoogleAuthService],
   exports: [UsersService],
   imports: [DatabaseModule, CodeVerificationModule, CommonModule],
 })
