@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy,OnInit } from '@angular/core';
 import { CreateUserForm } from '../models/user.form';
 import { UsersService } from 'src/app/users/service/users.service';
 import { UserRole } from '../models/user.role';
@@ -11,7 +11,7 @@ import { ListeFunctionalMessage, MessageType } from 'src/app/shared/models/messa
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent implements OnDestroy {
+export class RegisterComponent implements OnDestroy, OnInit {
   loading = false;
   createUserForm: CreateUserForm;
   private _destroy$ = new Subject<void>();
@@ -43,6 +43,8 @@ export class RegisterComponent implements OnDestroy {
     }
     this.messages.clear();
   }
+  ngOnInit(): void {
+  }
   getUserPayload() {
     return {
       username: this.createUserForm.usernameFormControl.value,
@@ -50,5 +52,16 @@ export class RegisterComponent implements OnDestroy {
       password: this.createUserForm.passwordFormControl.value,
       role: UserRole.USER
     };
+  }
+  handleGoogleAuth(token: string) {
+    this.usersService.createUserWithGoogle(token).pipe(takeUntil(this._destroy$)).subscribe({
+      next: () => {
+        this.messages.addMessage({ type: MessageType.success, message: 'User created with Google', fieldId: '' });
+        this.router.navigate(['/']);
+      },
+      error: (error) => {  
+        this.messages.addMessage({ type: MessageType.error, message: error.error.message.message, fieldId: '' });
+      }
+    });
   }
 }

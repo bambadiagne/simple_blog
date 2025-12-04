@@ -14,11 +14,27 @@ export class UsersService {
   createUser(user: UserCreationPayload) {
     return this.http.post(`${this.endpoint}/users`, user);
   }
+  createUserWithGoogle(token: string) {
+    return this.http.post(`${this.endpoint}/users/google`, { id_token: token });
+  }
   login(user: UserLoginPayload) {
     return this.http
       .post(`${this.endpoint}/auth/login`, user, {
         withCredentials: true
       })
+      .pipe(
+        tap({
+          next: (response) => {
+            localStorage.setItem('token', response['access_token']);
+            localStorage.setItem('userId', response['userId']);
+            this.getCurrentUser().subscribe();
+          }
+        })
+      );
+  }
+  loginWithGoogle(token: string) {
+    return this.http
+      .post(`${this.endpoint}/auth/google`, { id_token: token },)
       .pipe(
         tap({
           next: (response) => {

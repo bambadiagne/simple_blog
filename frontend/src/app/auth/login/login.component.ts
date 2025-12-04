@@ -51,4 +51,16 @@ export class LoginComponent implements OnDestroy {
       password: this.userLoginForm.passwordFormControl.value
     };
   }
+  handleGoogleAuth(token: string) {
+    this.usersService.loginWithGoogle(token).pipe(takeUntil(this._destroy$)).subscribe({
+      next: () => {
+        this.messages.addMessage({ type: MessageType.success, message: 'User logged in with Google', fieldId: '' });
+        setTimeout(() => {
+        this.router.navigate(['/']);}, 1000);
+      },
+      error: (error) => {
+        this.messages.addMessage({ type: MessageType.error, message: error.error.message.message, fieldId: '' });
+      }
+    });
+  }
 }

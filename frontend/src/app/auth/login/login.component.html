@@ -4,7 +4,7 @@
   <div id="forml" class="border-round-lg bg-black-alpha-90 shadow-8">
     <app-message *ngIf="this.messages.length > 0" [listeFunctionalMessage]="messages.listeFunctionalMessage"></app-message>
 
-        <h2 class="text-white text-center text-2xl md:text-4xl lg:text-5xl">Create an account</h2> 
+        <h2 class="text-white text-center text-2xl md:text-4xl lg:text-5xl">Login</h2> 
     
         <div class="flex justify-content-center align-items-center">
             <div>
@@ -21,6 +21,8 @@
                     <div class="text-center">
                       <p-button label="Send" severity="contrast" icon="pi pi-send" iconPos="right" (onClick)="submitForm()"></p-button>
                     </div>
+                    <app-google-auth (googleAuthToken)="handleGoogleAuth($event)"></app-google-auth>
+              
                   </form>
             </div>
             

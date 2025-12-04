@@ -8,17 +8,19 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dtos/create-user.dto';
+import { CreateUserDto, UserRole } from './dtos/create-user.dto';
 import { JwtGuard } from 'src/auth/guards/jwt.guard';
 import { CustomLogger } from 'src/logger/logger.service';
 import { CodeVerificationService } from 'src/code-verification/code-verification.service';
 import { SesService } from 'src/common/services/mailing/ses.service';
 import { CodeVerificationDto } from 'src/code-verification/dto/code-verification.dto';
+import { GoogleAuthService } from 'src/auth/google.service';
 @Controller('users')
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
     private readonly codeVerificationService: CodeVerificationService,
+    private readonly googleAuthService: GoogleAuthService,
     private readonly emailService: SesService,
     private logger: CustomLogger,
   ) {}
@@ -38,6 +40,21 @@ export class UsersController {
     return user;
   }
 
+  @Post('google')
+  async googleAuth(@Body('id_token') idToken: string) {
+    const user = await this.googleAuthService.verifyIdToken(idToken);
+    const isAlreadyRegistered = await this.usersService.findByEmail(user.email);
+    if (isAlreadyRegistered) {
+      throw new BadRequestException('User already registered');
+    }
+    return this.usersService.create({
+      username: user.name,
+      email: user.email,
+      password: Math.random().toString(36),
+      role: UserRole.USER,
+      picture: user.picture,
+    });
+  }
   @UseGuards(JwtGuard)
   @Get('me')
   async me(@Req() req) {

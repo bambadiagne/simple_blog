@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { LocalGuard } from './guards/local.guard';
 import { RefreshTokenGuard } from './guards/refresh.guard';
 import { ConfigService } from '@nestjs/config';
+import { GoogleAuthGuard } from './guards/google.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -10,6 +11,20 @@ export class AuthController {
     private readonly authService: AuthService,
     private configService: ConfigService,
   ) {}
+
+  @UseGuards(GoogleAuthGuard)
+  @Post('google')
+  async googleLogin(@Req() req, @Res({ passthrough: true }) res) {
+    const tokens = await this.authService.signToken(req.user);
+    res.cookie('refresh_token', tokens.refresh_token, {
+      httpOnly: true,
+      secure: this.configService.get('NODE_ENV') === 'production',
+      sameSite: 'strict',
+      maxAge: 604800000, // 7 days
+    });
+
+    return { access_token: tokens.access_token, userId: req.user.id };
+  }
 
   @UseGuards(LocalGuard)
   @Post('login')

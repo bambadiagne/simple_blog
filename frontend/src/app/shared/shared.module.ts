@@ -10,10 +10,11 @@ import { TextEditorComponent } from './forms/text-editor/text-editor.component';
 import { UploadFileComponent } from './forms/upload-file/upload-file.component';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { InputOtpComponent } from './forms/input-otp/input-otp.component';
+import { GoogleAuthComponent } from './forms/google-auth/google-auth';
 
 @NgModule({
-  declarations: [InputTextComponent, SpinnerComponent, MessageComponent, TextEditorComponent, UploadFileComponent, FunctionalMessagePipe, SafeHtmlPipe, InputOtpComponent],
+  declarations: [InputTextComponent, SpinnerComponent, MessageComponent, TextEditorComponent, UploadFileComponent, FunctionalMessagePipe, SafeHtmlPipe, InputOtpComponent,GoogleAuthComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, PrimeNgModule],
-  exports: [InputTextComponent, SpinnerComponent, MessageComponent, TextEditorComponent, UploadFileComponent, FunctionalMessagePipe, PrimeNgModule, SafeHtmlPipe, InputOtpComponent]
+  exports: [InputTextComponent, SpinnerComponent, MessageComponent, TextEditorComponent, UploadFileComponent, FunctionalMessagePipe, PrimeNgModule, SafeHtmlPipe, InputOtpComponent,GoogleAuthComponent]
 })
 export class SharedModule {}

@@ -20,6 +20,7 @@
               <div class="text-center">
                 <p-button label="Send" severity="contrast" icon="pi pi-send" iconPos="right" (onClick)="submitForm()"></p-button>
               </div>
+              <app-google-auth (googleAuthToken)="handleGoogleAuth($event)"></app-google-auth>
             </form>
           </div>
     </div>

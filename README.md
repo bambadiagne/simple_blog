@@ -58,7 +58,25 @@ AWS_REGION="your-region"
 AWS_ACCESS_KEY_ID="your-access-key"
 AWS_SECRET_ACCESS_KEY="your-secret-access-key"
 AWS_BUCKET_NAME="your-bucket-name"
+GOOGLE_CLIENT_ID="your-google-client-id"
 ```
+
+| Variable                | Description                                                      |
+|-------------------------|------------------------------------------------------------------|
+| NODE_ENV                | Application environment (development/production)                 |
+| API_URL                 | Base API path for frontend requests                              |
+| FRONTEND_URL            | URL where the frontend is hosted                                 |
+| DATABASE_URL            | Connection string for the PostgreSQL database                    |
+| POSTGRES_USER           | Username for the PostgreSQL database                             |
+| POSTGRES_PASSWORD       | Password for the PostgreSQL database                             |
+| POSTGRES_DB             | Database name for PostgreSQL                                     |
+| JWT_SECRET              | Secret key for signing JWT access tokens                         |
+| JWT_REFRESH_SECRET      | Secret key for signing JWT refresh tokens                        |
+| AWS_REGION              | AWS region for S3 bucket                                         |
+| AWS_ACCESS_KEY_ID       | AWS access key for S3                                            |
+| AWS_SECRET_ACCESS_KEY   | AWS secret access key for S3                                     |
+| AWS_BUCKET_NAME         | Name of the AWS S3 bucket                                        |
+| GOOGLE_CLIENT_ID        | Google OAuth client ID for authentication                        |
 
 3. You can use the docker-compose file it's so simple but you need that Docker installed in your device
 
