@@ -4,7 +4,6 @@ declare const google: any;
 
 @Component({
   selector: 'app-google-auth',
-  imports: [],
   templateUrl: './google-auth.html',
   styleUrl: './google-auth.css'
 })
